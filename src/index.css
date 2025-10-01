@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: "IBM Plex Sans", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  /* Color tokens (customize these values to match your palette) */
+  --color-primary: #F85306;
+  --color-red: #C62323;
+  --color-red-100: #961010;
+  --color-red-20: #F4D1D1;
+  --color-red-10: #F7DEDE;
+  --color-red-5: #FEF2F2;
+
+  --color-green: #20B038;
+  --color-green-100: #0B771D;
+  --color-green-20: #BCEBC8;
+  --color-green-10: #DEF3E1;
+  --color-green-5: #E7FBEC;
+
+  --color-yellow: #F7CA58;
+  --color-yellow-100: #E7A600;
+  --color-yellow-20: #F4EAD1;
+  --color-yellow-10: #FEF7E6;
+  --color-yellow-5: #FEFBF2;
+
+  --color-blue: #588AF7;
+  --color-blue-100: #014AE8;
+  --color-blue-10: #E6EEFE;
+
+  --color-orange-100: #D34603;
+  --color-orange-10: #FFF0E4;
+
+  --color-natural: #2B2B2B;
+  --color-natural-80: #5C5C5C;
+  --color-natural-60: #949494;
+  --color-natural-40: #D9D9D;
+  --color-natural-20: #E8E8E8;
+
+  --color-white: #FFFFFF;
+  --color-stroke: #EFEFEF;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+}
