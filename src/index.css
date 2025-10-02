@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
   font-family: "IBM Plex Sans", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
@@ -47,7 +45,7 @@
   --color-natural: #2B2B2B;
   --color-natural-80: #5C5C5C;
   --color-natural-60: #949494;
-  --color-natural-40: #D9D9D;
+  --color-natural-40: #D9D9D9;
   --color-natural-20: #E8E8E8;
 
   --color-white: #FFFFFF;
