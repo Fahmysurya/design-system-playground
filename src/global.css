@@ -1,0 +1,41 @@
+/* Import Tailwind v4 */
+@import "tailwindcss";
+
+/* Import IBM Plex Sans */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap');
+
+/* Tailwind theme tokens */
+:root {
+  --color-primary: #F85306;
+  --color-secondary: #F4B400;
+}
+
+/* Design tokens and global defaults */
+:root {
+  --font-sans: 'IBM Plex Sans', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+}
+
+/* Typography utilities */
+/* Headings (semibold) */
+.h-xxl { font-weight: 600; font-size: 28px; line-height: normal; }
+.h-xl  { font-weight: 600; font-size: 24px; line-height: normal; }
+.h-lg  { font-weight: 600; font-size: 20px; line-height: normal; }
+.h-md  { font-weight: 600; font-size: 16px; line-height: normal; }
+.h-sm  { font-weight: 600; font-size: 14px; line-height: normal; }
+.h-xs  { font-weight: 600; font-size: 12px; line-height: normal; }
+.h-label { font-weight: 600; font-size: 14px; line-height: 16px; }
+
+/* Body (regular) */
+.b-lg { font-weight: 400; font-size: 16px; line-height: normal; }
+.b-md { font-weight: 400; font-size: 14px; line-height: 20px; }
+.b-sm { font-weight: 400; font-size: 12px; line-height: normal; }
+.b-xs { font-weight: 400; font-size: 10px; line-height: 14px; }
