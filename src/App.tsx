@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Button from './Component/Button'
 import CloseIcon from './Component/icons/Close'
+import TextInput from './Component/Textinput'
 
 
 
@@ -44,6 +45,15 @@ function App() {
         <Button variant='stroke' iconOnly leftIcon={<CloseIcon width={16} height={16} /> } aria-label="Settings" />
         <Button variant="danger">danger</Button>
       </div>
+
+    <div className='gap-2 flex flex-col mt-2'>
+      <TextInput placeholder='Enter your fullname'/>
+      <TextInput 
+        label='Email'
+        type='email'
+        placeholder='Enter your active email'
+      />
+    </div>
       
     </>
   )

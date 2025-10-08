@@ -25,15 +25,15 @@ function getBaseClasses(iconOnly: boolean): string {
 function getVariantClasses(variant: ButtonVariant): string {
   switch (variant) {
     case 'primary':
-      return 'bg-[var(--color-primary)] text-white hover:bg-primary/90 active:bg-primary/80'
+      return 'bg-primary text-white hover:bg-orange-100 hover:text-primary active:bg-orange-10 active:text-primary'
     case 'secondary':
-      return 'bg-secondary text-black hover:bg-secondary/90 active:bg-secondary/80'
+      return 'bg-natural-40 text-natural hover:bg-natural-80 active:bg-orange-10 active:text-primary'
     case 'tertiary':
-      return 'bg-transparent text-primary hover:bg-primary/10 active:bg-primary/15'
+      return 'bg-transparent text-natural hover:bg-orange-100 hover:text/white active:bg-orange-10 active:text-primary'
     case 'stroke':
-      return 'bg-transparent text-primary border border-primary hover:bg-primary/10 active:bg-primary/15'
+      return 'bg-transparent border border-natural-20 text-natural hover:bg-primary hover:text-white active:bg-orange-10 active:text-primary'
     case 'danger':
-      return 'bg-red-600 text-white hover:bg-red-600/90 active:bg-red-600/80'
+      return 'bg-red text-white hover:bg-red-100 active:bg-red-10 active:text-red'
     default:
       return ''
   }
@@ -51,7 +51,7 @@ function getStateClasses(state: ButtonState, variant: ButtonVariant): string {
   return ''
 }
 
-export default function Button({
+function Button({
   variant = 'primary',
   state = 'enable',
   leftIcon,
@@ -87,3 +87,5 @@ export default function Button({
     </button>
   )
 }
+
+export default Button
