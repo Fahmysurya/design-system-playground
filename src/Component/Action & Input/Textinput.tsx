@@ -13,7 +13,7 @@ export interface TextInputProps extends Omit<InputHTMLAttributes<HTMLInputElemen
 
 function getInputClasses(state: InputState): string {
   const baseClasses = [
-    'w-full px-4 py-2 rounded-md border transition-colors duration-150',
+    'w-full px-3 py-1.5 rounded-md border transition-colors duration-150',
     'b-md', // Using b-md font as specified
     'placeholder:text-natural/60'
   ]

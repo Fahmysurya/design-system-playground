@@ -2,14 +2,17 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import Button from './Component/Button'
+import Button from './Component/Action & Input/Button'
 import CloseIcon from './Component/icons/Close'
-import TextInput from './Component/Textinput'
+import TextInput from './Component/Action & Input/Textinput'
+import Select from './Component/Action & Input/Select'
+import DropdownMenu from './Component/Action & Input/Dropdown_menu'
 
 
 
 function App() {
   const [count, setCount] = useState(0)
+  const [selectedTags, setSelectedTags] = useState<string[]>([])
 
   return (
     <>
@@ -50,8 +53,27 @@ function App() {
       <TextInput placeholder='Enter your fullname'/>
       <TextInput 
         label='Email'
-        type='email'
+        type='number'
         placeholder='Enter your active email'
+      />
+      <Select
+        variant='multiple'
+        placeholder='Can select more than 1'
+        options={[
+          { label: 'Tag 1', value: 'tag1' },
+          { label: 'Tag 2', value: 'tag2' },
+          { label: 'Tag 3', value: 'tag3' }
+        ]}
+        value={selectedTags}
+        onChange={(value) => {
+          // Ensure value is always string[]
+          setSelectedTags(Array.isArray(value) ? value : [value]);
+        }}
+      />
+      <DropdownMenu
+        label='Button'
+        items={[{ id: '1',label: 'Option'}, { id: '2', label: 'Option '}]}
+        align='start'
       />
     </div>
       
