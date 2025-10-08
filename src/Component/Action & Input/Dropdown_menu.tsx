@@ -5,7 +5,6 @@ import Radio from './Radio'
 
 export type DropdownTriggerVariant = 'default' | 'icon'
 export type DropdownMenuType = 'default' | 'checkbox' | 'radio'
-export type DropdownAlign = 'start' | 'end' | 'auto'
 
 export interface DropdownItem {
   id: string
@@ -22,7 +21,7 @@ export interface DropdownMenuProps {
   onChange?: (value: string | string[]) => void
   className?: string
   disabled?: boolean
-  align?: DropdownAlign
+  align?: 'start' | 'end'
 }
 
 function getTriggerClasses(disabled: boolean, active: boolean, variant: DropdownTriggerVariant): string {
@@ -31,21 +30,22 @@ function getTriggerClasses(disabled: boolean, active: boolean, variant: Dropdown
     'h-label',
   ]
   if (variant === 'icon') {
-    base.push('p-2 w-9 h-9 justify-center items-center')
+    base.push('p-2 w-9 h-9 justify-center')
   } else {
-    base.push('px-4 py-2 items-center')
+    base.push('px-4 py-2')
   }
   if (disabled) return [...base, 'bg-natural/10 border-natural/20 text-natural/40 cursor-not-allowed'].join(' ')
   if (active) return [...base, 'bg-orange-100 border-primary text-primary'].join(' ')
   return [...base, 'bg-white border-natural/20 text-natural hover:border-natural/40'].join(' ')
 }
 
-function getMenuClasses(): string {
-  return 'absolute mt-2 w-max bg-white border border-natural/20 rounded-md shadow-lg p-2 z-50'
+function getMenuClasses(align: 'start' | 'end'): string {
+    const alignmentClass = align === 'end' ? 'right-0' : 'left-0'
+    return `absolute top-full mt-2 w-max bg-white border border-natural/20 rounded-md shadow-lg p-2 z-50 ${alignmentClass}`
 }
 
 function getItemClasses(selected: boolean, hovered: boolean): string {
-  const base = 'flex items-center gap-1 w-full rounded-md p-2 b-md text-natural cursor-pointer'
+  const base = 'flex items-center gap-2 w-full rounded-md p-2 b-md text-natural cursor-pointer'
   if (hovered && selected) return `${base} bg-orange-100`
   if (hovered) return `${base} bg-orange-10`
   if (selected) return `${base} bg-orange-100`
@@ -61,13 +61,11 @@ function DropdownMenu({
   onChange,
   className = '',
   disabled = false,
-  align = 'auto',
+  align = 'start',
 }: DropdownMenuProps) {
   const [open, setOpen] = useState(false)
   const [hovered, setHovered] = useState<string | null>(null)
   const ref = useRef<HTMLDivElement>(null)
-  const triggerRef = useRef<HTMLButtonElement>(null)
-  const [resolvedAlign, setResolvedAlign] = useState<'start' | 'end'>('end')
 
   const isMultiple = menuType === 'checkbox'
   const selectedValues = Array.isArray(value) ? value : value ? [value] : []
@@ -79,18 +77,6 @@ function DropdownMenu({
     document.addEventListener('mousedown', onDocClick)
     return () => document.removeEventListener('mousedown', onDocClick)
   }, [])
-
-  useEffect(() => {
-    if (!open) return
-    // Resolve alignment when menu opens
-    if (align === 'auto') {
-      const width = triggerRef.current?.getBoundingClientRect().width ?? 0
-      // If trigger is wide (>= 200px), align menu to the end; otherwise start
-      setResolvedAlign(width >= 200 ? 'end' : 'start')
-    } else {
-      setResolvedAlign(align)
-    }
-  }, [open, align])
 
   const toggleValue = (id: string) => {
     if (disabled) return
@@ -106,8 +92,8 @@ function DropdownMenu({
   }
 
   const clear = () => {
-    if (disabled || !isMultiple) return
-    onChange?.([])
+    if (disabled) return
+    onChange?.(isMultiple ? [] : '')
   }
 
   const triggerContent = (
@@ -123,7 +109,6 @@ function DropdownMenu({
     <div ref={ref} className={`relative inline-block ${className}`}>
       <button
         type="button"
-        ref={triggerRef}
         className={getTriggerClasses(disabled, open, triggerVariant)}
         onClick={() => !disabled && setOpen(v => !v)}
         aria-haspopup="menu"
@@ -133,10 +118,7 @@ function DropdownMenu({
       </button>
 
       {open && !disabled && (
-        <div
-          role="menu"
-          className={`${getMenuClasses()} ${resolvedAlign === 'end' ? 'right-0' : 'left-0'} top-full`}
-        >
+        <div role="menu" className={getMenuClasses(align)}>
           {items.map(item => {
             const isSelected = selectedValues.includes(item.id)
             const isHovered = hovered === item.id
@@ -165,7 +147,7 @@ function DropdownMenu({
               </button>
             )
           })}
-          {menuType === 'checkbox' && (
+          {isMultiple && (
             <div className="mt-2 px-2">
               <button type="button" className="b-sm text-natural/60 hover:text-red" onClick={clear}>Clear</button>
             </div>

@@ -13,6 +13,7 @@ import DropdownMenu from './Component/Action & Input/Dropdown_menu'
 function App() {
   const [count, setCount] = useState(0)
   const [selectedTags, setSelectedTags] = useState<string[]>([])
+  const [tags,setTags] = useState<string[]>([])
 
   return (
     <>
@@ -74,6 +75,18 @@ function App() {
         label='Button'
         items={[{ id: '1',label: 'Option'}, { id: '2', label: 'Option '}]}
         align='start'
+      />
+      <DropdownMenu
+        label="Tags"
+        menuType="checkbox"
+        align='end'
+        items={[
+          { id: 'tag-1', label: 'Tag 1' },
+          { id: 'tag-2', label: 'Tag 2' },
+          { id: 'tag-3', label: 'Tag 3' },
+        ]}
+        value={tags}
+        onChange={(next) => setTags(next as string[])}
       />
     </div>
       
