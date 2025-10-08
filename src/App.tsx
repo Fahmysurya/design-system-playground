@@ -2,9 +2,18 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import Button from './Component/Action & Input/Button'
+import CloseIcon from './Component/icons/Close'
+import TextInput from './Component/Action & Input/Textinput'
+import Select from './Component/Action & Input/Select'
+import DropdownMenu from './Component/Action & Input/Dropdown_menu'
+
+
 
 function App() {
   const [count, setCount] = useState(0)
+  const [selectedTags, setSelectedTags] = useState<string[]>([])
+  const [tags,setTags] = useState<string[]>([])
 
   return (
     <>
@@ -31,22 +40,56 @@ function App() {
       <p className="h-xxl text-primary mt-6">
         Click on the Vite and React logos to learn more
       </p>
-      
-      {/* Demo berbagai penggunaan custom colors */}
-      <div className="mt-8 space-y-4">
-        <div className="bg-primary text-white p-4 rounded">
-          Background Primary (#F85306)
-        </div>
-        <div className="bg-secondary text-black p-4 rounded">
-          Background Secondary (#F4B400)
-        </div>
-        <div className="border-2 border-primary p-4 rounded">
-          Border Primary
-        </div>
-        <div className="text-secondary font-semibold">
-          Text Secondary Color
-        </div>
+      <div className='gap-2 flex '>
+        <Button variant="primary">Primary</Button>
+        <Button variant="secondary" leftIcon={<CloseIcon width={16} height={16} /> } rightIcon={<CloseIcon width={16} height={16} /> }>
+          Save
+        </Button>
+        <Button variant='tertiary' leftIcon={<CloseIcon width={16} height={16} /> } >With left icon</Button>
+        <Button variant='stroke' iconOnly leftIcon={<CloseIcon width={16} height={16} /> } aria-label="Settings" />
+        <Button variant="danger">danger</Button>
       </div>
+
+    <div className='gap-2 flex flex-col mt-2'>
+      <TextInput placeholder='Enter your fullname'/>
+      <TextInput 
+        label='Email'
+        type='number'
+        placeholder='Enter your active email'
+      />
+      <Select
+        variant='multiple'
+        placeholder='Can select more than 1'
+        options={[
+          { label: 'Tag 1', value: 'tag1' },
+          { label: 'Tag 2', value: 'tag2' },
+          { label: 'Tag 3', value: 'tag3' }
+        ]}
+        value={selectedTags}
+        onChange={(value) => {
+          // Ensure value is always string[]
+          setSelectedTags(Array.isArray(value) ? value : [value]);
+        }}
+      />
+      <DropdownMenu
+        label='Button'
+        items={[{ id: '1',label: 'Option'}, { id: '2', label: 'Option '}]}
+        align='start'
+      />
+      <DropdownMenu
+        label="Tags"
+        menuType="checkbox"
+        align='end'
+        items={[
+          { id: 'tag-1', label: 'Tag 1' },
+          { id: 'tag-2', label: 'Tag 2' },
+          { id: 'tag-3', label: 'Tag 3' },
+        ]}
+        value={tags}
+        onChange={(next) => setTags(next as string[])}
+      />
+    </div>
+      
     </>
   )
 }

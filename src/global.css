@@ -7,7 +7,43 @@
 /* Tailwind theme tokens */
 @theme {
   --color-primary: #F85306;
-  --color-secondary: #F4B400;
+  --color-orange: #D34603;
+  --color-orange-10: #FFF0E4;
+
+  --color-red: #C62323;
+  --color-red-100: #961010;
+  --color-red-20: #F4D1D1;
+  --color-red-10: #F7DEDE;
+  --color-red-5: #FEF2F2;
+
+  --color-yellow: #E7A600;
+  --color-yellow-100: #E7A600;
+  --color-yellow-20: #F4EAD1;
+  --color-yellow-10: #FEF7E6;
+  --color-yellow-5: #FEFBF2;
+
+  --color-green: #20B038;
+  --color-green-100: #0B771D;
+  --color-green-20: #BCEBC8;
+  --color-green-10: #DEF3E1;
+  --color-green-5: #E7FBEC;
+
+  --color-blue: #588AF7;
+  --color-blue-100: #014AE8;
+  --color-blue-20: #;
+  --color-blue-10: #E6EEFE;
+  --color-blue-5: #;
+
+  --color-natural: #2B2B2B;
+  --color-natural-80: #5C5C5C;
+  --color-natural-60: #949494;
+  --color-natural-40: #D9D9D9;
+  --color-natural-20: #E8E8E8;
+
+  --color-stroke: #EFEFEF;
+
+  
+  
 }
 
 /* Design tokens and global defaults */
